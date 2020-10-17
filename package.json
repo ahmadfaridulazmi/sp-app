@@ -6,7 +6,8 @@
     "start": "node ./bin/www",
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback --all",
-    "reset": "npm run rollback && npm run migrate"
+    "reset": "npm run rollback && npm run migrate",
+    "lint": "eslint ."
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -19,5 +20,11 @@
     "morgan": "~1.9.1",
     "objection": "^2.2.3",
     "pg": "^8.3.3"
+  },
+  "devDependencies": {
+    "eslint": "^7.11.0",
+    "babel-eslint": "^10.1.0",
+    "chai": "^4.2.0",
+    "faker": "^5.1.0"
   }
 }

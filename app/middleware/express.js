@@ -4,10 +4,9 @@ exports.controllerCallback = (controller) => {
             let controllerResponse = await controller(req, res);
             typeof controllerResponse !== typeof undefined && res.send(controllerResponse);
         } catch (e) {
-            console.log(e)
             if (e.errorCode) {
                 res.status(e.httpStatusCode || 400).send({ ...e.getMessage() });
-            }else if (e.data) {
+            } else if (e.data) {
                 res.status(400).send(e.data);
             } else if (e.nativeError && e.nativeError.code) {
                 res.status(409).send({

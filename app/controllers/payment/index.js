@@ -13,25 +13,22 @@ exports.all = async(req, res) => {
     });
     res.status(200);
     return logs.results;
-}
+};
 
 exports.create = async(req, res) => {
     await validator(paymentSchema.create, req.body);
     const mock_results = Math.random() >= 0.5; //mock payment results
-    const result = mock_results ? 'confirmed' : 'declined'
-    const { order_id, user_id, user_credentials = {} } = req.body
-    const { card_number = '' } = user_credentials
-    console.log(req.body)
-    user_credentials['card_number'] = `****${card_number.slice(-4)}`
-    console.log(user_credentials)
-    console.log(card_number)
+    const result = mock_results ? 'confirmed' : 'declined';
+    const { order_id, user_id, user_credentials = {} } = req.body;
+    const { card_number = '' } = user_credentials;
+    user_credentials['card_number'] = `****${card_number.slice(-4)}`;
     const attr = {
         order_id,
         user_id,
         user_credentials,
         status: result
-    }
+    };
     await logService.create(attr);
     res.status(201);
     return { result: result } ;
-}
+};
